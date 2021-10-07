@@ -1,0 +1,38 @@
+{
+  "name": "race-data-saver",
+  "version": "1.0.0",
+  "description": "worker implementation to save data from race data simulator",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel src --out-dir build",
+    "start:dev": "babel-node src/index.js",
+    "start": "node ./build/index.js",
+    "execute": "npm run build && npm start",
+    "test": "jest",
+    "lint": "eslint \"src/**/*.js\""
+  },
+  "keywords": [
+    "mongodb",
+    "workerThread",
+    "node"
+  ],
+  "author": "achini hettiarachchi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "dotenv": "^10.0.0",
+    "memory-cache": "^0.2.0",
+    "mongoose": "^6.0.9",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
+    "eslint": "^7.32.0",
+    "jest": "^27.2.4",
+    "mongodb-memory-server": "^7.4.3"
+  }
+}
