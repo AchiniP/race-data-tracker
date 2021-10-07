@@ -27,7 +27,7 @@ Client Side long Polling to fetch data from 3rd party API
 
 ## Package Structure
 
-![resources/structure.PNG](resources/structure.png)
+![resources/structure.PNG](resources/structure.PNG)
 
 ### Additional Libraries added
 - axios (Promise based HTTP client)
@@ -68,4 +68,4 @@ would be ideal.
 ### To check in local environment
 You can install kongoDB Compass and get the overview of your saved data
 ### Example:-
-![resources/local.PNG](resources/local.PNG)
+![resources/local.PNG](resources/Local.PNG)
