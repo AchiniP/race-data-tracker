@@ -2,7 +2,7 @@
 Client Side long Polling to fetch data from 3rd party API
 
 ## Prerequisites
-- NodeJS v16.10.0 (Node 12+)
+- NodeJS (local env is v16.10.0 and docker base img is also same verison) 
 - Docker
 
 ## Starting Project
