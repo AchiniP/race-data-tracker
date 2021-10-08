@@ -1,37 +1,71 @@
-## Welcome to GitHub Pages
+# race-data-tracker
+Client Side long Polling to fetch data from 3rd party API
 
-You can use the [editor on GitHub](https://github.com/AchiniP/race-data-tracker/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Prerequisites
+- NodeJS (local env is v16.10.0 and docker base img is also same verison) 
+- Docker
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Starting Project
 
-### Markdown
+### To start the project in docker environment
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+`docker-compose up --build
+`
 
-```markdown
-Syntax highlighted code block
+### To start the project in local environment
 
-# Header 1
-## Header 2
-### Header 3
+- `in .env file change the DATABASE_URL to DATABASE_URL=mongodb://localhost:27017/racedata
+`
+- `npm install
+`
+- `npm run execute
+`
 
-- Bulleted
-- List
+### To run the unit tests
 
-1. Numbered
-2. List
+`npm run test`
 
-**Bold** and _Italic_ and `Code` text
+## Package Structure
 
-[Link](url) and ![Image](src)
-```
+![resources/structure.PNG](resources/structure.PNG)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Additional Libraries added
+- axios (Promise based HTTP client)
+- mongoose (mongoDB ODM)  
+- dotenv (Loads environment variables from .env file)
+- memory-cache (imple in-memory cache to store token, so that we can reduce the calls making to auth API)
+- winston (logger library)
+  
+#### dev dependencies
+- babel (transpiler)
+- eslint (for linting)
+- jest (for TDD - unit testing)
+- mongodb-memory-server (mongodb mock server for testing) 
+  <br>
+  <br>
 
-### Jekyll Themes
+### Design Assumptions
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AchiniP/race-data-tracker/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Since we dont have any visibility on the server app, Client side polling is implemented. 
+For this kind of scenario where we need to publish and subscripe the events, using websockets/server sent Events (when browser is the client)
+would be ideal.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### To verify your application is up and running in docker environment
+
+- `docker ps  // you will see available containers for node and mongo db)`
+- `docker exec -it <mongo db container id> bash (you'll go to the shell of mongo container)`
+- `mongo (will go to mongo shell)`
+- `show databases (to get availabale databases)`
+- `use racedata (to use our db)`
+- `db.getCollectionNames() (you'll get available collections)`
+- `db.race_events.count() (to get the total count of the docs created up to now)`
+- `db.race_events.find({"hores.id": 27}).pretty() (will pretty print the documents related to horse with id 27)`
+
+### Example:- 
+![resources/Docker.PNG](resources/Docker.PNG)
+
+### To check in local environment
+You can install kongoDB Compass and get the overview of your saved data
+### Example:-
+![resources/local.PNG](resources/Local.PNG)
