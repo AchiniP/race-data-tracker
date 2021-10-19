@@ -2,7 +2,7 @@ import 'dotenv/config';
 import axios from "axios";
 import Logger from "../utils/Logger";
 import Cache from "../utils/Cache";
-import ErrorBase from "../utils/ErrorBase";
+import ErrorBase from "../utils/error/ErrorBase";
 import RaceEventService from "../service/RaceEventService";
 
 const LOG = new Logger('RaceApiRepository.js');

@@ -21,14 +21,17 @@
   "dependencies": {
     "axios": "^0.22.0",
     "dotenv": "^10.0.0",
+    "http-status-codes": "^2.1.4",
     "memory-cache": "^0.2.0",
     "mongoose": "^6.0.9",
+    "path": "^0.12.7",
     "winston": "^3.3.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
+    "@babel/register": "^7.15.3",
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.6",
     "eslint": "^7.32.0",
