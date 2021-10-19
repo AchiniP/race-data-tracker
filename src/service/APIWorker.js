@@ -21,7 +21,7 @@ parentPort.on('message', message => {
  * @returns {Promise<void>}
  */
 const runAPIWorker = async () => {
-  LOG.info('starting API worker')
+  LOG.info('run API worker')
   await RaceEventService.fetchRaceData().then(
     resonse => handleResponse(resonse)
   ).catch(err => handleError(err));
@@ -38,7 +38,7 @@ const handleResponse = async (response) => {
     let {data} = await response
     parentPort.postMessage({status: STATUS_DB_SAVE, data: data})
   } else {
-    LOG.info('Publishing for retry');
+    LOG.info(`Response Status Received is ${response.status}. Publishing for retry`);
     parentPort.postMessage({status: STATUS_RETRY_SERVICE})
   }
 }

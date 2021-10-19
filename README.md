@@ -1,34 +1,45 @@
 # race-data-tracker
-Client Side long Polling to fetch data from 3rd party API
+The main purpose of this repository is to fetch data from an external API and save in mongo DB.
 
-## Prerequisites
-- NodeJS (local env is v16.10.0 and docker base img is also same verison) 
-- Docker
+# Table of contents:
+- [Pre-reqs](#pre-reqs)
+- [Getting started](#getting-started)
+- [Dependencies](#dependencies)
+- [Assumptions](#assumptions)
 
-## Starting Project
+# Pre-reqs
+- Install [Node.js](https://nodejs.org/en/)
+- Install [MongoDB](https://docs.mongodb.com/manual/installation/)
+- Install [Docker](https://docs.docker.com/get-docker/)
 
-### To start the project in docker environment
+# Getting started
 
-`docker-compose up --build
-`
+- Clone the repository
+```
+git clone https://github.com/AchiniP/race-data-tracker.git <project_name>
+```
 
-### To start the project in local environment
+- Install dependencies
+```
+cd <project_name>
+npm install
+```
 
-- `in .env file change the DATABASE_URL to DATABASE_URL=mongodb://localhost:27017/racedata
-`
-- `npm install
-`
-- `npm run execute
-`
+- Build and run the project
+```
+npm run execute
+```
 
-### To run the unit tests
+- To start the project in docker environment
+```
+docker-compose up --build
+```
 
-`npm run test`
-
-## Package Structure
-
-![resources/structure.PNG](resources/structure.PNG)
-
+- To run the unit tests
+```
+npm run test
+```
+# Dependencies
 ### Additional Libraries added
 - axios (Promise based HTTP client)
 - mongoose (mongoDB ODM)  
@@ -44,28 +55,10 @@ Client Side long Polling to fetch data from 3rd party API
   <br>
   <br>
 
+
+# Assumptions
 ### Design Assumptions
 
 Since we dont have any visibility on the server app, Client side polling is implemented. 
 For this kind of scenario where we need to publish and subscripe the events, using websockets/server sent Events (when browser is the client)
 would be ideal.
-
-
-### To verify your application is up and running in docker environment
-
-- `docker ps  // you will see available containers for node and mongo db)`
-- `docker exec -it <mongo db container id> bash (you'll go to the shell of mongo container)`
-- `mongo (will go to mongo shell)`
-- `show databases (to get availabale databases)`
-- `use racedata (to use our db)`
-- `db.getCollectionNames() (you'll get available collections)`
-- `db.race_events.count() (to get the total count of the docs created up to now)`
-- `db.race_events.find({"hores.id": 27}).pretty() (will pretty print the documents related to horse with id 27)`
-
-### Example:- 
-![resources/Docker.PNG](resources/Docker.PNG)
-
-### To check in local environment
-You can install kongoDB Compass and get the overview of your saved data
-### Example:-
-![resources/local.PNG](resources/Local.PNG)

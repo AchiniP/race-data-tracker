@@ -33,7 +33,7 @@ parentPort.on('message', message => {
  * @returns {Promise<void>}
  */
 const saveData = async (data) => {
-  LOG.debug(`Saving Event: ${data}`);
+  LOG.info('Saving Event');
   const raceEvent = new RaceEvent(data)
   await raceEvent.save()
   LOG.debug('call API upon successful Save');

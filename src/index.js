@@ -4,7 +4,7 @@ import InitService from './service/InitService';
 import {closetDBConnection} from './repository/DBConnection';
 
 const LOG = new Logger('index.js');
-
+const { MAX_RETRY } = process.env;
 /**
  * Entry point
  * @returns {Promise<void>}
@@ -23,13 +23,18 @@ const runWorker = async (retryCount) => {
 }
 
 process.on('SIGINT', () => {
-  LOG.info('SIGTERM signal received.');
+  LOG.info('SIGINT signal received.');
   LOG.warn('Closing http server.');
   closetDBConnection(() => {
     LOG.info('MongoDb connection closed.');
-    process.exit(0);
+    process.exit(1);
   });
 });
 
-runWorker();
+process.on('uncaughtException', err => {
+  LOG.error('Unexpected Error occurred in Application. Exit App!', err)
+  process.exit(1) //mandatory (as per the Node.js docs)
+})
+
+runWorker(MAX_RETRY);
 

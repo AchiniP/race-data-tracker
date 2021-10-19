@@ -6,7 +6,7 @@ services:
     volumes:
       - ./:/code
     env_file:
-      - .env
+      - .env_prod
   mongo:
     image: mongo
     ports:
