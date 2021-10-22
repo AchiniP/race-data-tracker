@@ -4,7 +4,7 @@ import RaceEventService from './RaceEventService';
 import {STATUS_START_SERVICE, STATUS_RETRY_SERVICE, STATUS_DB_SAVE} from '../utils/AppConstants';
 import Logger from '../utils/Logger';
 
-const LOG = new Logger('APIWorker.js');
+const LOG = new Logger('APIWorker');
 
 /**
  * Subscribe to messages from Parent
@@ -28,7 +28,7 @@ const runAPIWorker = async () => {
 }
 
 /**
- * hanler for success response
+ * handler for success response from result api
  * @param response
  * @returns {Promise<void>}
  */

@@ -7,7 +7,7 @@ import ErrorBase from '../utils/error/ErrorBase';
 import ErrorMessages from '../utils/error/ErrorMessages';
 import ErrorCodes from '../utils/error/ErrorCodes';
 
-const LOG = new Logger('InitService.js');
+const LOG = new Logger('InitService');
 
 /**
  * Initialize worker threads
@@ -66,7 +66,7 @@ const handleDBWorker = (dbWorker, apiWorker) => {
 const handleDBWorkerErrors = (dbWorker) => {
   dbWorker.on('error', code => {
     LOG.error(`Error occurred in Database worker. code: ${code}`);
-    throw new ErrorBase(ErrorMessages.DB_WORKER_ERROR, ErrorCodes.RUNTIME_ERROR_CODE,
+    return new ErrorBase(ErrorMessages.DB_WORKER_ERROR, ErrorCodes.RUNTIME_ERROR_CODE,
       StatusCodes.INTERNAL_SERVER_ERROR)
   });
   dbWorker.on('exit', code => {

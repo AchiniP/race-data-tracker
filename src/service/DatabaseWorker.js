@@ -1,10 +1,10 @@
 import {parentPort} from 'worker_threads';
 import {STATUS_DB_CONNECT, STATUS_DB_SAVE, STATUS_RETRY_SERVICE, STATUS_START_SERVICE} from '../utils/AppConstants';
 import Logger from '../utils/Logger';
-import {setUpDBConnection} from '../repository/DBConnection'
+import DBConnection from '../config/DBConnection'
 import RaceEvent from '../model/RaceEvent';
 
-const LOG = new Logger('DatabaseWorker.js');
+const LOG = new Logger('DatabaseWorker');
 
 /**
  * If status is DB connect Initialize the DB connect
@@ -15,7 +15,7 @@ parentPort.on('message', message => {
 
   if (status === STATUS_DB_CONNECT) {
     LOG.info('Going to connect to the database');
-    setUpDBConnection();
+    DBConnection.setUpDBConnection();
     LOG.info('Going to publish message to trigger data fetch');
     parentPort.postMessage({status: STATUS_START_SERVICE});
   }

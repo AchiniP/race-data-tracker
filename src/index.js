@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import Logger from './utils/Logger';
 import InitService from './service/InitService';
-import {closetDBConnection} from './repository/DBConnection';
-
 const LOG = new Logger('index.js');
 const { MAX_RETRY } = process.env;
 /**
@@ -18,22 +16,23 @@ const runWorker = async (retryCount) => {
     if (nextRetryCount > 0) {
       await InitService.runService();
     }
-
   });
 }
 
+/**
+ * Gracefully handle SIGINT
+ */
 process.on('SIGINT', () => {
-  LOG.info('SIGINT signal received.');
-  LOG.warn('Closing http server.');
-  closetDBConnection(() => {
-    LOG.info('MongoDb connection closed.');
-    process.exit(1);
-  });
+  LOG.info('SIGINT signal received. Exit App!');
+  process.exit(1);
 });
 
+/**
+ * Gracefully handle uncaught exceptions
+ */
 process.on('uncaughtException', err => {
-  LOG.error('Unexpected Error occurred in Application. Exit App!', err)
-  process.exit(1) //mandatory (as per the Node.js docs)
+  LOG.error(`Unexpected Error occurred in Application. Exit App! Error: ${err}`);
+  process.exit(1)
 })
 
 runWorker(MAX_RETRY);

@@ -44,7 +44,6 @@ npm run test
 - axios (Promise based HTTP client)
 - mongoose (mongoDB ODM)  
 - dotenv (Loads environment variables from .env file)
-- memory-cache (imple in-memory cache to store token, so that we can reduce the calls making to auth API)
 - winston (logger library)
   
 #### dev dependencies
