@@ -1,20 +1,24 @@
 const mongoose = require('mongoose');
 
+/**
+ * Race Event Schema
+ * @type {Model}
+ */
 const raceEventSchema = mongoose.Schema({
-    event: {
-        type: String
+  event: {
+    type: String
+  },
+  horse: {
+    id: {
+      type: Number
     },
-    horse: {
-        id: {
-            type: Number
-        },
-        name: {
-            type: String
-        },
+    name: {
+      type: String
     },
-    time: {
-        type: Number
-    },
+  },
+  time: {
+    type: Number
+  },
 });
 
-module.exports = mongoose.model("race_event", raceEventSchema);
+module.exports = mongoose.model('race_event', raceEventSchema);
