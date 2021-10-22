@@ -72,11 +72,13 @@ describe('init service', () => {
     dbStub.restore();
   });
 
-  it('should call ', async () => {
+  it('should execute workers', async () => {
     dbStub.returns(Promise.resolve(true));
     stub.onCall(0).returns(Promise.resolve(mockAuthTokenResponse()))
       .onCall(1).returns(Promise.resolve(mockEventResponse()));
+    const spy = jest.spyOn(Service, 'runService');
     await Service.runService();
+    expect(spy).toBeCalled();
   });
 });
 
